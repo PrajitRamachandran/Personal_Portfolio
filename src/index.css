@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /*
+    THE PERMANENT FIX — all three rules work together:
+
+    1. overflow-y: scroll          → scrollbar track always rendered, never appears/disappears
+    2. scrollbar-gutter: stable    → reserves the scrollbar width even when thumb is hidden
+       (these two together mean the viewport width is CONSTANT at all times — no reflow)
+
+    3. font-display: optional on fonts (set in @font-face below) → browser never does
+       a reflow when fonts load late; it uses fallback if fonts aren't ready at first paint
+  */
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: #050508;
+    color: #e2e8f0;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+    /*
+      isolation: isolate creates a new stacking context so that
+      child GPU-layer promotions don't bleed into the document flow
+    */
+    isolation: isolate;
+  }
+
+  ::selection {
+    background: rgba(0, 212, 255, 0.3);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #050508;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d4ff, #a855f7);
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 212, 255, 0.4);
+  }
+
+  .neon-text-purple {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.8), 0 0 60px rgba(168, 85, 247, 0.4);
+  }
+
+  .glow-border {
+    box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.1), inset 0 0 30px rgba(0, 212, 255, 0.02);
+  }
+
+  .glow-border-purple {
+    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.3), 0 0 30px rgba(168, 85, 247, 0.1), inset 0 0 30px rgba(168, 85, 247, 0.02);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00d4ff 0%, #a855f7 50%, #f472b6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-blue {
+    background: linear-gradient(135deg, #00d4ff, #22d3ee);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /*
+    Buttons:
+    - translate3d (not translateY) keeps transform on the GPU compositor thread
+    - will-change: transform declares the GPU layer BEFORE any interaction
+    - transform: translateZ(0) at rest ensures the layer is promoted immediately
+      on mount, not lazily on first hover — so there's zero jank on first interaction
+  */
+  .btn-primary {
+    @apply relative px-8 py-3 font-display font-semibold text-sm tracking-widest uppercase overflow-hidden rounded-full transition-all duration-300;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(168, 85, 247, 0.15));
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+    will-change: transform;
+    transform: translateZ(0);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(168, 85, 247, 0.25));
+    border-color: rgba(0, 212, 255, 0.8);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3), 0 0 60px rgba(0, 212, 255, 0.1);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  .btn-secondary {
+    @apply relative px-8 py-3 font-display font-semibold text-sm tracking-widest uppercase overflow-hidden rounded-full transition-all duration-300;
+    background: transparent;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+    color: #a855f7;
+    will-change: transform;
+    transform: translateZ(0);
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(168, 85, 247, 0.1);
+    border-color: rgba(168, 85, 247, 0.8);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+    transform: translate3d(0, -2px, 0);
+  }
+
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .page-grid {
+    background-image: linear-gradient(rgba(0, 212, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /*
+    All animated cards get this class. Declaring the GPU layer here in CSS
+    (rather than inline via Framer style prop) means it survives React remounts —
+    the class is applied by the CSS engine independently of the React lifecycle.
+  */
+  .gpu-layer {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
+/* Custom cursor */
+.cursor {
+  width: 12px;
+  height: 12px;
+  background: #00d4ff;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: difference;
+}
+
+/* Scanline effect */
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+}
+
+/*
+  Page transition wrapper.
+  position: fixed during exit animation + position: relative during enter
+  means the exiting page is taken OUT of document flow entirely while animating —
+  so it can never push/pull the scrollbar or other elements.
+*/
+.page-wrapper {
+  min-height: 100vh;
+  position: relative;
+  /* Contain all children — transforms inside can't affect outside layout */
+  contain: layout style;
+}

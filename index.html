@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Prajit Ramachandran — AI & Data Science Student Portfolio" />
+    <title>Prajit Ramachandran · AI & Data Science</title>
+
+    <!--
+      font-display=optional: browser uses the fallback font if the custom font
+      isn't cached yet. No swap, no reflow, no layout shift from late font loads.
+      On second visit fonts are cached and load instantly anyway.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400;500&display=optional"
+      rel="stylesheet"
+    />
+
+    <!--
+      Reserve scrollbar width immediately via inline style so there's
+      zero gap between HTML parse and CSS load where width could be wrong.
+    -->
+    <style>
+      html {
+        overflow-y: scroll;
+        scrollbar-gutter: stable;
+        background: #050508;
+      }
+      /* Size-stable fallback fonts that match our custom fonts' metrics closely */
+      body {
+        font-family: 'DM Sans', 'Arial', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
