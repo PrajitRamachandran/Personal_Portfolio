@@ -2,6 +2,7 @@ import { useRef, Suspense, lazy } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
+import ProfileActionButtons from '../components/ProfileActionButtons'
 
 const HeroCanvas = lazy(() => import('../components/HeroCanvas'))
 
@@ -84,18 +85,20 @@ export default function Home() {
             >
               <div className="h-px w-12" style={{ background: 'linear-gradient(90deg, #00d4ff, transparent)' }} />
               <p className="font-display text-lg text-white/60 font-medium tracking-wide">
-                AI & Data Science Student
+                AI Developer building real-world intelligent systems
               </p>
             </motion.div>
 
             <motion.p
-              custom={4} variants={floatVariants} initial="initial" animate="animate"
-              className="text-white/40 font-body text-base leading-relaxed max-w-md mb-10"
-            >
-              Building intelligent systems at the intersection of machine learning,
-              computer vision, and human creativity. Passionate about pushing
-              the boundaries of what AI can achieve.
-            </motion.p>
+  custom={4}
+  variants={floatVariants}
+  initial="initial"
+  animate="animate"
+  className="text-gray-200 font-body text-lg md:text-xl leading-relaxed max-w-2xl mb-10"
+>
+  <span className="text-cyan-400 font-semibold">AI Developer</span> with a strong grounding in <span className="text-cyan-400 font-semibold">data science</span> and <span className="text-cyan-400 font-semibold">data analysis</span>, focused on building intelligent systems that transform data into real-world impact. <br /><br />
+  I specialize in <span className="text-cyan-400 font-semibold">machine learning</span> and constantly push myself to learn, experiment, and create solutions that go beyond theory.
+</motion.p>
 
             <motion.div
               custom={5} variants={floatVariants} initial="initial" animate="animate"
@@ -109,15 +112,22 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               custom={6} variants={floatVariants} initial="initial" animate="animate"
+              className="mt-6 w-full max-w-2xl"
+            >
+              <ProfileActionButtons />
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              custom={7} variants={floatVariants} initial="initial" animate="animate"
               className="mt-14 grid grid-cols-4 gap-6 w-full max-w-lg"
             >
               {stats.map(({ value, label }) => (
                 <div key={label} className="text-center">
                   <p className="font-display text-2xl font-bold gradient-text">{value}</p>
-                  <p className="font-mono text-[10px] text-white/25 tracking-widest uppercase mt-1 leading-tight">{label}</p>
+                  <p className="font-mono text-[10px] text-white/50 tracking-widest uppercase mt-1 leading-tight">{label}</p>
                 </div>
               ))}
             </motion.div>
@@ -143,7 +153,7 @@ export default function Home() {
     
     {/* Floating animation ONLY affects inner content */}
     <motion.div
-      animate={{ y: [0, -12, 0] }}
+      animate={{ y: [0, -8, 0] }}
       transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
       className="flex flex-col items-center"
     >
@@ -170,6 +180,22 @@ export default function Home() {
           />
         </div>
       </div>
+      {/* Role badge */}
+      <motion.div
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 1.2, duration: 0.6 }}
+  className="mt-5 px-5 py-2 rounded-full glass-strong"
+  style={{ 
+    border: '1px solid rgba(0,212,255,0.6)', 
+    boxShadow: '0 0 30px rgba(0,212,255,0.4)' 
+  }}
+>
+  <p className="font-mono text-xs tracking-[0.25em] text-neon-blue uppercase">
+    AI & Data Science
+  </p>
+</motion.div>
+
 
     </motion.div>
   </div>

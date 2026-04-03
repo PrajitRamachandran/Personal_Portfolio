@@ -69,7 +69,7 @@ export default function About() {
                   AI & Data Science student from India, building intelligent systems and chasing the frontier of machine learning. Currently open to opportunities.
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {['Python', 'TensorFlow', 'OpenCV', 'ML'].map(tag => (
+                  {['AI', 'Python', 'Machine Learning', 'Data Science','Data Analysis'].map(tag => (
                     <span key={tag} className="font-mono text-[10px] px-3 py-1 rounded-full tracking-widest uppercase"
                       style={{ color: '#a855f7', background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.2)' }}>
                       {tag}
@@ -87,9 +87,7 @@ export default function About() {
                 <div className="glass rounded-2xl p-8 glow-border">
                   <p className="font-mono text-xs tracking-[0.3em] text-neon-blue/60 uppercase mb-4">Introduction</p>
                   <p className="font-body text-white/70 leading-relaxed text-base">
-                    I'm <span className="text-white font-medium">Prajit Ramachandran</span>, an AI & Data Science
-                    student driven by the conviction that we're living through the most transformative moment in
-                    human history — the rise of machine intelligence.
+                    I'm <span className="text-white font-medium">Prajit Ramachandran</span>, a Bachelor's student in Artificial Intelligence and Data Science at Dhaanish Ahmed College of Engineering. With a strong foundation in Python and machine learning, I’m focused on building systems that turn data into meaningful, real-world impact.
                   </p>
                 </div>
               </RevealBlock>
@@ -98,11 +96,10 @@ export default function About() {
                 <div className="glass rounded-2xl p-8 glow-border-purple">
                   <p className="font-mono text-xs tracking-[0.3em] text-neon-purple/60 uppercase mb-4">My Passion</p>
                   <p className="font-body text-white/70 leading-relaxed text-base">
-                    From training my first neural network to building computer vision systems, I've fallen
-                    deeper in love with the mathematical elegance underlying AI. I believe the intersection
-                    of <span className="text-neon-purple">mathematics, computation, and creativity</span> is
-                    where the most profound discoveries happen.
-                  </p>
+  From my first print statement to building a local <span className="text-neon-purple">LLM-based AI agent</span>, I’ve been hooked on understanding how intelligent systems work.
+  <br /><br />
+  I’m genuinely passionate about <span className="text-neon-purple">AI, STEM, and emerging technologies</span>—but more importantly, I like building. I’m always learning, experimenting, and pushing myself to turn ideas into something real, whether it’s a model, a project, or a new skill.
+</p>
                 </div>
               </RevealBlock>
 
@@ -110,10 +107,16 @@ export default function About() {
                 <div className="glass rounded-2xl p-8" style={{ border: '1px solid rgba(244,114,182,0.2)' }}>
                   <p className="font-mono text-xs tracking-[0.3em] text-neon-pink/60 uppercase mb-4">Career Vision</p>
                   <p className="font-body text-white/70 leading-relaxed text-base">
-                    My north star is contributing to <span className="text-neon-pink">Artificial General Intelligence</span> —
-                    building systems that reason, learn, and adapt across domains. I envision a future where
-                    AI amplifies human potential rather than replacing human judgment.
-                  </p>
+  I’m aiming to build a career in AI that gives me both 
+  <span className="text-neon-pink"> depth and flexibility</span> — 
+  working on <span className="text-neon-pink"> meaningful problems</span> while continuously expanding across domains. 
+  I value <span className="text-neon-pink"> remote work</span> and a 
+  <span className="text-neon-pink"> balanced lifestyle</span>, where I can stay productive without burning out. 
+  Long-term, I want to grow into someone who can 
+  <span className="text-neon-pink"> think broadly</span>, 
+  <span className="text-neon-pink"> adapt quickly</span>, and contribute across 
+  <span className="text-neon-pink"> different areas of technology</span>.
+</p>
                 </div>
               </RevealBlock>
             </div>
@@ -121,7 +124,7 @@ export default function About() {
             {/* Right: traits + timeline */}
             <div className="space-y-6">
               <RevealBlock delay={0.15}>
-                <p className="font-mono text-xs tracking-[0.3em] text-white/30 uppercase mb-6">Core Traits</p>
+                <p className="font-mono text-xs tracking-[0.3em] text-white/80 uppercase mb-6">Core Traits</p>
                 <div className="grid grid-cols-2 gap-4">
                   {traits.map(({ icon, label, desc }, i) => (
                     <motion.div
@@ -143,10 +146,10 @@ export default function About() {
                   <p className="font-mono text-xs tracking-[0.3em] text-white/30 uppercase mb-6">Quick Facts</p>
                   <div className="space-y-4">
                     {[
-                      { label: 'Location', value: 'India 🇮🇳' },
-                      { label: 'Focus', value: 'AI / Machine Learning / CV' },
+                      { label: 'Location', value: 'Chennai, India (IST) — Open to remote roles' },
+                      { label: 'Focus', value: 'Applied AI & Data — ML + real-world systems' },
                       { label: 'Status', value: 'Open to opportunities' },
-                      { label: 'Interest', value: 'AGI, Alignment, NLP' },
+                      { label: 'Interest', value: 'AI, Data-driven Systems, Intelligent Applications' },
                     ].map(({ label, value }) => (
                       <div key={label} className="flex items-center justify-between py-3 border-b border-white/[0.04] last:border-0">
                         <span className="font-mono text-xs text-white/30 uppercase tracking-widest">{label}</span>

@@ -66,7 +66,7 @@ function AnimatedRing({ mouse }) {
   })
 
   return (
-    <group position={[0, -0.25, 0]}>
+    <group position={[0.4, -0.1, 0.2]}>
       {/* Outer ring */}
       <mesh ref={outerRef}>
         <torusGeometry args={[1.8, 0.04, 16, 200]} />

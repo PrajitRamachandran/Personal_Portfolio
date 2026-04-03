@@ -27,7 +27,16 @@ const socials = [
     icon: 'in',
     href: 'https://www.linkedin.com/in/prajit-ramachandran',
     color: '#f472b6',
-    desc: 'Let\'s connect professionally',
+    desc: "Let's connect professionally",
+  },
+  {
+    label: 'Resume',
+    value: 'Download Resume',
+    icon: '↓',
+    href: '/Prajit_Ramachandran_Resume.pdf',
+    download: 'Prajit_Ramachandran_Resume.pdf',
+    color: '#22d3ee',
+    desc: 'Get a PDF copy of my resume',
   },
 ]
 
@@ -35,8 +44,9 @@ function ContactCard({ item, index }) {
   return (
     <motion.a
       href={item.href}
-      target="_blank"
-      rel="noopener noreferrer"
+      download={item.download}
+      target={item.download ? undefined : "_blank"}
+      rel={item.download ? undefined : "noopener noreferrer"}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -60,7 +70,7 @@ function ContactCard({ item, index }) {
         </p>
         <p className="font-body text-white/30 text-xs mt-1">{item.desc}</p>
       </div>
-      <div className="text-white/20 group-hover:text-white/60 transition-colors self-center">→</div>
+      <div className="text-white/20 group-hover:text-white/60 transition-colors self-center">&rarr;</div>
     </motion.a>
   )
 }
@@ -93,15 +103,15 @@ const handleSubmit = (e) => {
   setLoading(true);
 
   emailjs.send(
-    "service_48f10al",          // ✅ your service ID
-    "template_igplz3q",         // ✅ your template ID
+    "service_48f10al",
+    "template_igplz3q",
     {
       from_name: form.name,
       from_email: form.email,
       subject: form.subject,
       message: form.message,
     },
-    "g4SskuSe922hssibd"         // ✅ your public key
+    "g4SskuSe922hssibd"
   )
   .then(() => {
     setLoading(false);
@@ -199,7 +209,7 @@ const handleSubmit = (e) => {
                       className="w-16 h-16 rounded-full flex items-center justify-center mb-6 text-3xl"
                       style={{ background: 'rgba(0,212,255,0.12)', border: '1px solid rgba(0,212,255,0.3)' }}
                     >
-                      ✓
+                      &#10003;
                     </motion.div>
                     <h3 className="font-display text-xl font-bold text-white mb-2">Message Sent!</h3>
                     <p className="font-body text-white/40 text-sm">I'll get back to you within 24 hours.</p>
@@ -207,7 +217,7 @@ const handleSubmit = (e) => {
                       onClick={() => { setSent(false); setForm({ name: '', email: '', subject: '', message: '' }) }}
                       className="mt-6 font-mono text-xs tracking-widest uppercase text-neon-blue/60 hover:text-neon-blue transition-colors"
                     >
-                      Send Another →
+                      Send Another &rarr;
                     </button>
                   </motion.div>
                 ) : (
@@ -284,7 +294,7 @@ const handleSubmit = (e) => {
                             className="inline-block w-4 h-4 border-2 border-neon-blue/30 border-t-neon-blue rounded-full" />
                           Sending...
                         </motion.div>
-                      ) : 'Send Message →'}
+                      ) : 'Send Message ->'}
                     </motion.button>
                   </motion.form>
                 )}

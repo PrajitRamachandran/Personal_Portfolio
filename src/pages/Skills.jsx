@@ -5,39 +5,39 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 
 const skillGroups = [
   {
-    category: 'Programming Languages',
-    icon: '⌨️',
+    category: 'Core Skills',
+    icon: '🧠',
     color: '#00d4ff',
     skills: [
-      { name: 'Python', level: 90, icon: '🐍' },
-      { name: 'Java', level: 70, icon: '☕' },
-      { name: 'SQL', level: 75, icon: '🗄️' },
-      { name: 'HTML', level: 85, icon: '🌐' },
-      { name: 'CSS', level: 80, icon: '🎨' },
+      { name: 'Python', level: 'Intermediate' },
+      { name: 'Data Analysis', level: 'Intermediate' },
+      { name: 'Machine learning', level: 'Intermediate' },
+      { name: 'Scikit-learn', level: 'Basic' },
+      { name: 'Numpy/Pandas', level: 'Intermediate' },
     ],
   },
   {
-    category: 'AI / Machine Learning',
-    icon: '🧠',
+    category: 'Supporting Skills',
+    icon: '⚙️',
     color: '#a855f7',
     skills: [
-      { name: 'Scikit-learn', level: 85, icon: '🔬' },
-      { name: 'TensorFlow', level: 75, icon: '⚡' },
-      { name: 'OpenCV', level: 80, icon: '👁️' },
-      { name: 'NumPy / Pandas', level: 88, icon: '📊' },
-      { name: 'NLP / NLTK', level: 72, icon: '💬' },
+      { name: 'SQL', level: 'Basic' },
+      { name: 'Power BI', level: 'Intermediate' },
+      { name: 'Data Visualisation', level: 'Intermediate' },
+      { name: 'Git / GitHub', level: 'Basic' },
+      { name: 'Excel', level: 'Intermediate' },
+      { name: 'Flask / FastAPI', level: 'Basic' },
     ],
   },
   {
-    category: 'Tools & Platforms',
+    category: 'Familiar With',
     icon: '🛠️',
     color: '#f472b6',
     skills: [
-      { name: 'Power BI', level: 70, icon: '📈' },
-      { name: 'Git / GitHub', level: 82, icon: '🔀' },
-      { name: 'VS Code', level: 90, icon: '💻' },
-      { name: 'Google Cloud', level: 65, icon: '☁️' },
-      { name: 'Flask', level: 68, icon: '🌶️' },
+      { name: 'Tensorflow / OpenCV', level: 'Basic' },
+      { name: 'Java', level: 'Intermediate' },
+      { name: 'HTML/CSS', level: 'Basic' },
+      { name: 'Cloud', level: 'Basic' },
     ],
   },
 ]
@@ -64,7 +64,7 @@ function SkillBar({ name, level, color, icon, index }) {
           className="font-mono text-xs"
           style={{ color: `${color}80` }}
         >
-          {level}%
+          {level}
         </motion.span>
       </div>
       <div className="h-1.5 rounded-full overflow-hidden" style={{ background: `${color}12` }}>
@@ -121,8 +121,13 @@ function SkillGroup({ group, index }) {
 }
 
 const techPills = [
-  'Python', 'TensorFlow', 'OpenCV', 'Scikit-learn', 'NumPy', 'Pandas',
-  'SQL', 'Java', 'HTML', 'CSS', 'Flask', 'Git', 'Power BI', 'Google Cloud', 'NLTK'
+  'Python',
+  'Machine Learning',
+  'Scikit-learn',
+  'OpenCV',
+  'NumPy',
+  'Pandas',
+  'SQL'
 ]
 
 export default function Skills() {
@@ -149,9 +154,9 @@ export default function Skills() {
                 initial={{ opacity: 0, scale: 0.7 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: i * 0.04, duration: 0.4, type: 'spring' }}
-                style={{ willChange: "transform" }} whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.1, y: -2 }}
                 className="gpu-layer font-mono text-xs px-4 py-2 rounded-full glass cursor-default"
-                style={{ border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
+                style={{ willChange: 'transform', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)' }}
               >
                 {pill}
               </motion.span>
@@ -180,7 +185,7 @@ export default function Skills() {
               <p className="font-mono text-xs tracking-[0.3em] uppercase text-neon-blue/60">Currently Leveling Up</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              {['PyTorch', 'Transformers / HuggingFace', 'LangChain', 'LLM Fine-tuning', 'Docker', 'FastAPI'].map((item) => (
+              {['PyTorch', 'Ollama', 'Local LLM', 'Transformers (HuggingFace)', 'LangChain', 'Docker', 'FastAPI'].map((item) => (
                 <span key={item} className="font-body text-sm text-white/60 px-4 py-2 rounded-full"
                   style={{ background: 'rgba(0,212,255,0.06)', border: '1px solid rgba(0,212,255,0.15)' }}>
                   {item} ✦
